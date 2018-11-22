@@ -1,13 +1,13 @@
 %% Initialization
 clear ; close all; clc;
 
-load X; load X_sorted; load X_sorted_indices;
+load small_X; load small_X_sorted_indices;
 
-m = size(X, 1);
+m = size(small_X, 1);
 
-input_layer_size  = 100;  % 100 numbers
-hidden_layer_size = 100;   % 100 hidden units
-num_labels = 100;          % 100 sorted numbers
+input_layer_size  = 10;  % 10 numbers
+hidden_layer_size = 10;   % 10 hidden units
+num_labels = 10;          % 10 sorted numbers
 
 % Weight regularization parameter
 lambda = 1;
@@ -24,19 +24,16 @@ initial_nn_params = [Theta1(:) ; Theta2(:)];
 
 
 %Cost function test
-%[J grad] = nnCostFunction(nn_params, input_layer_size, hidden_layer_size, ...
-%                   num_labels, X, X_sorted_indices, lambda);
-
-
-
+%[J grad] = nnCostFunction(initial_nn_params, input_layer_size, hidden_layer_size, ...
+%                   num_labels, small_X, small_X_sorted_indices, lambda)
 
 %implement fmincg here
 
-% Create "short hand" for the cost function to be minimized
+% Create short hand for the cost function to be minimized
 costFunction = @(p) nnCostFunction(p, ...
                                    input_layer_size, ...
                                    hidden_layer_size, ...
-                                   num_labels, X, X_sorted_indices, lambda);
+                                   num_labels, small_X, small_X_sorted_indices, lambda);
                                    
 %  After you have completed the assignment, change the MaxIter to a larger
 %  value to see how more training helps.
@@ -58,3 +55,4 @@ Theta2 = reshape(nn_params((1 + (hidden_layer_size * (input_layer_size + 1))):en
 %gradient checking
 
 %celebrate
+
