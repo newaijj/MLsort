@@ -68,12 +68,8 @@ a_two = sigmoid(z_two);
 a_two = [ ones(size(a_two,1), 1), a_two];
 a_three = sigmoid(a_two*Theta2');
 
-for i = 1:size(y)
-  binary_vector(i) = zeros(size(num_labels),1);
-  binary_vector(i, y(i)) = ;
-endfor;
 
-J = 1/m*(sum(sum((-binary_vector.*(log(a_three)))-((1-binary_vector).*(log(1-a_three))))));
+J = 1/m*(sum(sum((-y.*(log(a_three)))-((1-y).*(log(1-a_three))))));
 
 #adding regularisation
 
@@ -85,7 +81,7 @@ delta_large_one = zeros(hidden_layer_size,input_layer_size+1);
 delta_large_two = zeros(num_labels, hidden_layer_size+1);
 
 for t = 1:m
-  delta_small_three = a_three(t,:)' - binary_vector(t,:)';
+  delta_small_three = a_three(t,:)' - y(t,:)';
   delta_small_two = Theta2'*delta_small_three .* [1,sigmoidGradient(z_two(t,:))]';
   delta_small_two = delta_small_two(2:end);
   delta_large_one = delta_large_one + delta_small_two*X(t,:);
