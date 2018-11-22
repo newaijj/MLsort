@@ -3,7 +3,11 @@ clear ; close all; clc;
 
 load small_X; load small_X_sorted_indices;
 
-m = size(small_X, 1);
+X = small_X;
+y = small_X_sorted_indices;
+
+
+m = size(X, 1);
 
 input_layer_size  = 10;  % 10 numbers
 hidden_layer_size = 10;   % 10 hidden units
@@ -25,15 +29,16 @@ initial_nn_params = [Theta1(:) ; Theta2(:)];
 
 %Cost function test
 %[J grad] = nnCostFunction(initial_nn_params, input_layer_size, hidden_layer_size, ...
-%                   num_labels, small_X, small_X_sorted_indices, lambda)
+%                   num_labels, X, y, lambda)
 
 %implement fmincg here
+
 
 % Create short hand for the cost function to be minimized
 costFunction = @(p) nnCostFunction(p, ...
                                    input_layer_size, ...
                                    hidden_layer_size, ...
-                                   num_labels, small_X, small_X_sorted_indices, lambda);
+                                   num_labels, X, y, lambda);
                                    
 %  After you have completed the assignment, change the MaxIter to a larger
 %  value to see how more training helps.
@@ -51,6 +56,11 @@ Theta2 = reshape(nn_params((1 + (hidden_layer_size * (input_layer_size + 1))):en
                  num_labels, (hidden_layer_size + 1));
 
 %Check that the new theta is classifying correctly by testing with forward prop (predict)
+%testset = [9,9,9,8,8,2,2,1,1,1]
+%predict(Theta1,Theta2,testset,num_labels)
+
+
+test = assessSigmoid(X,Theta1,Theta2,X,m,num_labels)
 
 %gradient checking
 
