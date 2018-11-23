@@ -42,3 +42,4 @@ Types of Rectified ReLU: [https://medium.com/@kanchansarkar/](https://medium.com
 
 ## License
 Mine.
+~~Actually mostly Andrew Ng's~~
