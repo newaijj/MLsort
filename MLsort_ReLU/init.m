@@ -5,12 +5,12 @@ clear ; close all; clc
 %load dataset
 
 fprintf('Load everything  \n');
-load('X.mat');
-load('X_sorted.mat');
-load('X_CV.mat');
-load('X_CV_sorted.mat');
-load('X_test.mat');
-load('X_test_sorted.mat');
+load('data/X.mat');
+load('data/X_sorted.mat');
+load('data/X_CV.mat');
+load('data/X_CV_sorted.mat');
+load('data/X_test.mat');
+load('data/X_test_sorted.mat');
 
 %% Setup the parameters you will use for this exercise
 fprintf('Setup perimeters \n');
